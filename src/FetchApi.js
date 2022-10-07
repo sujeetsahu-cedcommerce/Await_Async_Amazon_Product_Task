@@ -7,7 +7,7 @@ import {
   SkeletonBodyText,
   TextField,
 } from "@shopify/polaris";
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const FetchApi = () => {
   const [loader, setLoader] = useState(false);
@@ -149,15 +149,29 @@ const FetchApi = () => {
   };
 
   const handleSelectAttributeChange = (value, index) => {
-    AttributeOptions.map((k) => {
-      if (k.value === value) {
-        k.disabled = true;
-        let temp = [...selected2];
-        temp[index] = value;
-        setSelected2(temp);
+    // AttributeOptions.map((k) => {
+    //   if (k.value === value) {
+    //     k.disabled = true;
+    //     let temp = [...selected2];
+    //     temp[index] = value;
+    //     setSelected2(temp);
+    //   }
+    // });
+    // setselectedAttribute(value);
+    alert(value);
+    alert(index);
+    let temp1 = [...selected2];
+    temp1[index] = value;
+    let temp2 = [...AttributeOptions];
+    for (let i = 0; i <= AttributeOptions.length - 1; i++) {
+      if (temp1.includes(temp2[i].value)) {
+        temp2[i].disabled = true;
+      } else {
+        temp2[i].disabled = false;
       }
-    });
-    setselectedAttribute(value);
+    }
+    setSelected2(temp1);
+    setAttributeOptions(temp2);
   };
 
   const Remove = (index) => {
